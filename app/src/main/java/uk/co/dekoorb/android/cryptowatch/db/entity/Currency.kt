@@ -9,30 +9,30 @@ import android.arch.persistence.room.PrimaryKey
 
 @Entity
 data class Currency(
-        @PrimaryKey
-        val id: String,
+    @PrimaryKey
+    var id: String = "",
 
-        val name: String,
-        val symbol: String,
-        val rank: Int,
+    var name: String = "",
+    var symbol: String = "",
+    var rank: Int = -1,
 
-        val priceUsd: Double,
-        val priceBtc: Double,
-        val priceGbp: Double,
+    var priceUsd: Double = 0.0,
+    var priceBtc: Double = 0.0,
+    var priceGbp: Double = 0.0,
 
-        val volumeUsd: Double,
-        val volumeGbp: Double,
+    var volumeUsd: Double = 0.0,
+    var volumeGbp: Double = 0.0,
 
-        val marketCapUsd: Double,
-        val marketCapGbp: Double,
+    var marketCapUsd: Double = 0.0,
+    var marketCapGbp: Double = 0.0,
 
-        val availableSupply: Double,
-        val totalSupply: Double,
-        val maxSupply: Double,
+    var availableSupply: Double = 0.0,
+    var totalSupply: Double = 0.0,
+    var maxSupply: Double = 0.0,
 
-        val percentChange1h: Float,
-        val percentChange7d: Float,
-        val percentChange24h: Float,
+    var percentChange1h: Float = 0.0f,
+    var percentChange7d: Float = 0.0f,
+    var percentChange24h: Float = 0.0f,
 
-        val lastUpdated: Int
+    var lastUpdated: Int = 0
 )
