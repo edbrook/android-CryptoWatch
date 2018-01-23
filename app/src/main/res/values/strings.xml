@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">CryptoWatch</string>
 
-    <string name="api_url" translatable="false">https://api.coinmarketcap.com/v1/ticker/?convert=GBP</string>
     <string name="loading">Loading...</string>
     <string name="price_gbp">Price GBP:</string>
     <string name="change_24h">Change 24h:</string>

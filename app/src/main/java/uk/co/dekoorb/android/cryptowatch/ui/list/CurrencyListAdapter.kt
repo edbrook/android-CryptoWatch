@@ -38,6 +38,7 @@ class CurrencyListAdapter(listener: ItemClickListener):
 
     fun setCurrencyList(currencyList: List<Currency>?) {
         mCurrencyList = currencyList
+        notifyDataSetChanged()
     }
 
     class CurrencyViewHolder(itemBinding: CurrencyListItemBinding, listener: ItemClickListener):

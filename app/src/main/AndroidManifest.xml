@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uk.co.dekoorb.android.cryptowatch">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".CurrencyApp"
         android:allowBackup="true"

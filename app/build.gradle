@@ -55,4 +55,8 @@ dependencies {
     // Kotlin room / databinding
     kapt 'android.arch.persistence.room:compiler:1.0.0'
     kapt 'com.android.databinding:compiler:3.0.1'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 }

@@ -20,6 +20,9 @@ interface CurrencyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addCurrency(currency: Currency)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun addCurrencies(currency: List<Currency>)
+
     @Update
     fun updateCurrency(currency: Currency)
 

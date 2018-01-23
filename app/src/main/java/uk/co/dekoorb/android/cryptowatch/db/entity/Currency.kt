@@ -2,6 +2,7 @@ package uk.co.dekoorb.android.cryptowatch.db.entity
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import com.google.gson.annotations.SerializedName
 
 /**
  * Created by edbrook on 22/01/2018.
@@ -20,8 +21,8 @@ data class Currency(
     var priceBtc: Double = 0.0,
     var priceGbp: Double = 0.0,
 
-    var volumeUsd: Double = 0.0,
-    var volumeGbp: Double = 0.0,
+    @SerializedName("24h_volume_usd") var volumeUsd: Double = 0.0,
+    @SerializedName("24h_volume_gbp") var volumeGbp: Double = 0.0,
 
     var marketCapUsd: Double = 0.0,
     var marketCapGbp: Double = 0.0,
