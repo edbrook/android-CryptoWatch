@@ -16,6 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.detail.CurrencyDetailActivity"
+            android:label="@string/currency_detail"
+            android:parentActivityName=".ui.list.CurrencyListActivity"/>
     </application>
 
 </manifest>

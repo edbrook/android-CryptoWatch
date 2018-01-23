@@ -14,7 +14,7 @@ data class Currency(
 
     var name: String = "",
     var symbol: String = "",
-    var rank: Int = -1,
+    var rank: Int = 0,
 
     var priceUsd: Double = 0.0,
     var priceBtc: Double = 0.0,

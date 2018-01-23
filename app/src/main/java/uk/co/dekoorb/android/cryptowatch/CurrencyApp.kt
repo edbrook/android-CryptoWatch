@@ -27,7 +27,15 @@ class CurrencyApp: Application() {
             return null
         }
         private fun createRandomCurrency(): Currency {
-            return Currency(id = "AAA", rank = 1, symbol = "BTC", priceGbp = Math.random() * 10000)
+            return Currency(
+                    id = "AAA",
+                    rank = 1,
+                    name = "Etherium",
+                    symbol = "ETH",
+                    priceGbp = Math.random() * 10000,
+                    percentChange1h = -1.358934f,
+                    percentChange24h = -5.35234f,
+                    percentChange7d = 42.523984f)
         }
     }
 

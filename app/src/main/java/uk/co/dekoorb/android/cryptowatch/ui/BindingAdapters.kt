@@ -23,3 +23,8 @@ fun setDoubleText(view: TextView, value: Double) {
 fun setFloatText(view: TextView, value: Float) {
     view.text = String.format(Locale.UK, "%.2f", value)
 }
+
+@BindingAdapter("percentVal")
+fun setPercentText(view: TextView, value: Float) {
+    view.text = String.format(Locale.UK, "%.2f%%", value)
+}

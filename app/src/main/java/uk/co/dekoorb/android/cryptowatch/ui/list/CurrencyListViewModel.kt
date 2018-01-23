@@ -11,10 +11,10 @@ import uk.co.dekoorb.android.cryptowatch.db.entity.Currency
  */
 class CurrencyListViewModel: ViewModel() {
 
-    private val mDb: CurrencyDatabase? = CurrencyApp.db
+    private val mDb: CurrencyDatabase = CurrencyApp.db!!
 
     fun getCurrencyList(): LiveData<List<Currency>> {
-        return mDb?.currencyDao()!!.getAllCurrencies()
+        return mDb.currencyDao().getAllCurrencies()
     }
 
 }
