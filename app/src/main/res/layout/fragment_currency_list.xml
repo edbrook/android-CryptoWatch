@@ -21,12 +21,19 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/currency_list"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".ui.list.CurrencyListActivity"
-            android:visibility="@{isLoading ? View.INVISIBLE : View.VISIBLE}" />
+            android:visibility="@{isLoading ? View.INVISIBLE : View.VISIBLE}">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/currency_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.list.CurrencyListActivity" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
 
     </FrameLayout>
 </layout>

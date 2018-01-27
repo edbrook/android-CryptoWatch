@@ -6,6 +6,7 @@ import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import android.view.LayoutInflater
@@ -20,7 +21,9 @@ import uk.co.dekoorb.android.cryptowatch.ui.ItemClickListener
  * Created by edbrook on 22/01/2018.
  */
 class CurrencyListFragment:
-        Fragment(), ItemClickListener {
+        Fragment(),
+        ItemClickListener,
+        SwipeRefreshLayout.OnRefreshListener {
 
     companion object {
         const val TAG = "CurrencyListFragment"
@@ -44,11 +47,15 @@ class CurrencyListFragment:
         mListener = context as CurrencyListFragmentActions
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater?,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
         mAdapter = CurrencyListAdapter(this)
         mBinding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_currency_list, container, false)
         mBinding?.isLoading = true
+        mBinding?.swipeRefresh?.isRefreshing = false
+        mBinding?.swipeRefresh?.setOnRefreshListener(this)
         mBinding?.currencyList?.layoutManager = LinearLayoutManager(context)
         mBinding?.currencyList?.adapter = mAdapter
         return mBinding?.root
@@ -65,6 +72,10 @@ class CurrencyListFragment:
             mAdapter?.setCurrencyList(it)
             mBinding?.isLoading = false
         })
+
+        mViewModel?.isUpdating()?.observe(this, Observer<Boolean> {
+            mBinding?.swipeRefresh?.isRefreshing = it ?: false
+        })
     }
 
     override fun onClick(currency: Currency) {
@@ -75,5 +86,9 @@ class CurrencyListFragment:
     override fun onLongClick(currency: Currency): Boolean {
         Log.d(TAG, "onLongClick: " + currency.name)
         return mListener?.onCurrencyItemLongClick(currency) == true
+    }
+
+    override fun onRefresh() {
+        mViewModel?.updateCurrencies()
     }
 }

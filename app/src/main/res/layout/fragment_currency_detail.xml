@@ -42,27 +42,27 @@
                     android:id="@+id/currency_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginTop="8dp"
                     android:text="@{currency.name}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-                    app:layout_constraintBottom_toBottomOf="@+id/currency_symbol"
                     app:layout_constraintEnd_toStartOf="@+id/currency_symbol"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/currency_symbol"
-                    tools:text="Etherium" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Bitcoin Cash" />
 
                 <TextView
                     android:id="@+id/currency_symbol"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@{currency.symbol}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                    app:layout_constraintBottom_toBottomOf="@+id/currency_name"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="ETH" />
+                    tools:text="BTC" />
 
 
                 <TextView
