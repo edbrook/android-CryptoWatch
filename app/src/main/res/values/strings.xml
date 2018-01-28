@@ -7,4 +7,6 @@
     <string name="change_1h">Change 1h:</string>
     <string name="change_7d">Change 7d:</string>
     <string name="currency_detail">Currency Detail</string>
+    <string name="search_title">Search</string>
+    <string name="search_hint">currency name</string>
 </resources>

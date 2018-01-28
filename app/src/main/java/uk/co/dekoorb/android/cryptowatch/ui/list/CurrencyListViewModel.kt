@@ -2,6 +2,7 @@ package uk.co.dekoorb.android.cryptowatch.ui.list
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Transformations
 import android.arch.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,11 +24,35 @@ class CurrencyListViewModel: ViewModel() {
 
     private val mApi: CoinMarketCapService = CoinMarketCapServiceBuilder().getCoinMarketCapService()
     private val mDb: CurrencyDatabase = CurrencyApp.db!!
+    private var mHaveUpdated: Boolean = false
     private val mUpdating: MutableLiveData<Boolean> = MutableLiveData()
 
+    private val mNameFilter: MutableLiveData<String> = MutableLiveData()
+    private val mCurrencyResult: LiveData<List<Currency>> = Transformations
+            .switchMap(mNameFilter, { name -> loadCurrencyData(name) })
+
+    init {
+        mNameFilter.value = ""
+    }
+
+    private fun loadCurrencyData(name: String): LiveData<List<Currency>> {
+        return if (name.isEmpty()) {
+            mDb.currencyDao().getAllCurrencies()
+        } else {
+            mDb.currencyDao().filterCurrency(name)
+        }
+    }
+
     fun getCurrencyList(): LiveData<List<Currency>> {
-        updateCurrencies()
-        return mDb.currencyDao().getAllCurrencies()
+        if (!mHaveUpdated) {
+            updateCurrencies()
+            mHaveUpdated = true
+        }
+        return mCurrencyResult
+    }
+
+    fun setFilter(name: String) {
+        mNameFilter.value = "$name%"
     }
 
     fun isUpdating(): LiveData<Boolean> {

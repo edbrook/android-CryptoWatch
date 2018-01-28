@@ -78,6 +78,10 @@ class CurrencyListFragment:
         })
     }
 
+    fun setFilter(name: String) {
+        mViewModel?.setFilter(name)
+    }
+
     override fun onClick(currency: Currency) {
         Log.d(TAG, "onClick: " + currency.name)
         mListener?.onCurrencyItemClick(currency)
