@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.SearchView
 import android.text.TextUtils
 import android.view.Menu
+import android.view.MenuItem
 import uk.co.dekoorb.android.cryptowatch.R
 import uk.co.dekoorb.android.cryptowatch.db.entity.Currency
 import uk.co.dekoorb.android.cryptowatch.ui.detail.CurrencyDetailActivity
@@ -77,6 +78,14 @@ class CurrencyListActivity : AppCompatActivity(),
             mSearchView?.clearFocus()
         }
 
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.action_refresh -> mViewModel?.updateCurrencies()
+            else -> return super.onOptionsItemSelected(item)
+        }
         return true
     }
 
