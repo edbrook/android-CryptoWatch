@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -63,7 +62,7 @@ class CurrencyListFragment:
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mViewModel = ViewModelProviders.of(this).get(CurrencyListViewModel::class.java)
+        mViewModel = ViewModelProviders.of(activity).get(CurrencyListViewModel::class.java)
         subscribeUi()
     }
 
@@ -83,12 +82,10 @@ class CurrencyListFragment:
     }
 
     override fun onClick(currency: Currency) {
-        Log.d(TAG, "onClick: " + currency.name)
         mListener?.onCurrencyItemClick(currency)
     }
 
     override fun onLongClick(currency: Currency): Boolean {
-        Log.d(TAG, "onLongClick: " + currency.name)
         return mListener?.onCurrencyItemLongClick(currency) == true
     }
 

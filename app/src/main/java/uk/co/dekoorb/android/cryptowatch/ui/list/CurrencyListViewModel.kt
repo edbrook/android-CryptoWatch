@@ -29,7 +29,7 @@ class CurrencyListViewModel: ViewModel() {
 
     private val mNameFilter: MutableLiveData<String> = MutableLiveData()
     private val mCurrencyResult: LiveData<List<Currency>> = Transformations
-            .switchMap(mNameFilter, { name -> loadCurrencyData(name) })
+            .switchMap(mNameFilter, { name -> loadCurrencyData("$name%") })
 
     init {
         mNameFilter.value = ""
@@ -51,8 +51,12 @@ class CurrencyListViewModel: ViewModel() {
         return mCurrencyResult
     }
 
+    fun getFilter(): String? {
+        return mNameFilter.value
+    }
+
     fun setFilter(name: String) {
-        mNameFilter.value = "$name%"
+        mNameFilter.value = name
     }
 
     fun isUpdating(): LiveData<Boolean> {
