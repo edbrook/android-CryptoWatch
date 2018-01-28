@@ -11,6 +11,9 @@ import uk.co.dekoorb.android.cryptowatch.db.entity.Currency
 
 @Dao
 interface CurrencyDao {
+    @Query("SELECT COUNT(*) FROM currency")
+    fun getCurrencyCount(): Int
+
     @Query("SELECT * FROM currency ORDER BY rank ASC")
     fun getAllCurrencies(): LiveData<List<Currency>>
 

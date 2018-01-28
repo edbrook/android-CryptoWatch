@@ -9,6 +9,7 @@ import uk.co.dekoorb.android.cryptowatch.R
 import uk.co.dekoorb.android.cryptowatch.databinding.CurrencyListItemBinding
 import uk.co.dekoorb.android.cryptowatch.db.entity.Currency
 import uk.co.dekoorb.android.cryptowatch.ui.ItemClickListener
+import java.util.*
 
 /**
  * Created by edbrook on 22/01/2018.
@@ -19,6 +20,10 @@ class CurrencyListAdapter(listener: ItemClickListener):
     private var mCurrencyList: List<Currency>? = null
     private val mItemClickListener: ItemClickListener = listener
 
+    init {
+        setHasStableIds(true)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): CurrencyViewHolder {
         val itemBinding: CurrencyListItemBinding = DataBindingUtil.inflate(
                 LayoutInflater.from(parent?.context),
@@ -26,6 +31,11 @@ class CurrencyListAdapter(listener: ItemClickListener):
                 parent, false)
 
         return CurrencyViewHolder(itemBinding, mItemClickListener)
+    }
+
+    override fun getItemId(position: Int): Long {
+        val s = mCurrencyList!![position].id
+        return UUID.nameUUIDFromBytes(s.toByteArray()).mostSignificantBits
     }
 
     override fun getItemCount(): Int {
