@@ -55,6 +55,9 @@ class CurrencyListFragment:
         mBinding?.isLoading = true
         mBinding?.swipeRefresh?.isRefreshing = false
         mBinding?.swipeRefresh?.setOnRefreshListener(this)
+        mBinding?.swipeRefresh?.setColorSchemeResources(
+                R.color.colorAccent
+        )
         mBinding?.currencyList?.layoutManager = LinearLayoutManager(context)
         mBinding?.currencyList?.adapter = mAdapter
         return mBinding?.root
