@@ -12,7 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import uk.co.dekoorb.android.cryptowatch.R
 import uk.co.dekoorb.android.cryptowatch.db.entity.Currency
-import uk.co.dekoorb.android.cryptowatch.ui.detail.CurrencyDetailActivity
+import uk.co.dekoorb.android.cryptowatch.ui.detail.CurrencyDetailPagerActivity
 
 class CurrencyListActivity : AppCompatActivity(),
         CurrencyListFragment.Companion.CurrencyListFragmentActions {
@@ -90,7 +90,9 @@ class CurrencyListActivity : AppCompatActivity(),
     }
 
     override fun onCurrencyItemClick(currency: Currency) {
-        val intent = CurrencyDetailActivity.getIntent(this, currency.id)
+        val intent = CurrencyDetailPagerActivity.getIntent(this,
+                currency.id,
+                mViewModel?.getFilter() ?: "")
         startActivity(intent)
     }
 

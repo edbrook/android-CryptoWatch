@@ -8,164 +8,145 @@
         <import type="android.view.View" />
 
         <variable
-            name="isLoading"
-            type="boolean" />
-
-        <variable
             name="currency"
             type="uk.co.dekoorb.android.cryptowatch.db.entity.Currency" />
     </data>
 
-    <FrameLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical|center_horizontal"
-            android:text="@string/loading"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-            android:visibility="@{isLoading ? View.VISIBLE : View.GONE}" />
+            android:layout_height="wrap_content"
+            android:padding="16dp">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="@{isLoading ? View.INVISIBLE : View.VISIBLE}">
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/currency_name"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:padding="16dp">
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="8dp"
+                android:text="@{currency.name}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+                app:layout_constraintEnd_toStartOf="@+id/currency_symbol"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Bitcoin Cash" />
 
-                <TextView
-                    android:id="@+id/currency_name"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@{currency.name}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-                    app:layout_constraintEnd_toStartOf="@+id/currency_symbol"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Bitcoin Cash" />
-
-                <TextView
-                    android:id="@+id/currency_symbol"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@{currency.symbol}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-                    app:layout_constraintBottom_toBottomOf="@+id/currency_name"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="BTC" />
+            <TextView
+                android:id="@+id/currency_symbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@{currency.symbol}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+                app:layout_constraintBottom_toBottomOf="@+id/currency_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="BTC" />
 
 
-                <TextView
-                    android:id="@+id/label_price_gbp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
-                    android:text="@string/price_gbp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/currency_name" />
+            <TextView
+                android:id="@+id/label_price_gbp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="@string/price_gbp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/currency_name" />
 
-                <TextView
-                    android:id="@+id/currency_price_gbp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    app:currencyVal="@{currency.priceGbp}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_price_gbp"
-                    app:layout_constraintStart_toEndOf="@+id/label_price_gbp"
-                    app:layout_constraintTop_toTopOf="@+id/label_price_gbp"
-                    app:layout_constraintVertical_bias="0.5"
-                    tools:text="£6351.58" />
-
-
-                <TextView
-                    android:id="@+id/label_change_1h"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
-                    android:text="@string/change_1h"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/currency_price_gbp" />
-
-                <TextView
-                    android:id="@+id/currency_change_1h"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    app:percentVal="@{currency.percentChange1h}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_change_1h"
-                    app:layout_constraintEnd_toEndOf="@+id/currency_price_gbp"
-                    app:layout_constraintStart_toEndOf="@+id/label_change_1h"
-                    app:layout_constraintTop_toTopOf="@+id/label_change_1h"
-                    app:layout_constraintVertical_bias="0.5"
-                    tools:text="-12.43%" />
+            <TextView
+                android:id="@+id/currency_price_gbp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                app:currencyVal="@{currency.priceGbp}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toBottomOf="@+id/label_price_gbp"
+                app:layout_constraintStart_toEndOf="@+id/label_price_gbp"
+                app:layout_constraintTop_toTopOf="@+id/label_price_gbp"
+                app:layout_constraintVertical_bias="0.5"
+                tools:text="£6351.58" />
 
 
-                <TextView
-                    android:id="@+id/label_change_24h"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
-                    android:text="@string/change_24h"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/currency_change_1h" />
+            <TextView
+                android:id="@+id/label_change_1h"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/change_1h"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/currency_price_gbp" />
 
-                <TextView
-                    android:id="@+id/currency_change_24h"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    app:percentVal="@{currency.percentChange24h}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_change_24h"
-                    app:layout_constraintEnd_toEndOf="@+id/currency_change_1h"
-                    app:layout_constraintStart_toEndOf="@+id/label_change_24h"
-                    app:layout_constraintTop_toTopOf="@+id/label_change_24h"
-                    app:layout_constraintVertical_bias="0.5"
-                    tools:text="-5.58%" />
+            <TextView
+                android:id="@+id/currency_change_1h"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                app:percentVal="@{currency.percentChange1h}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toBottomOf="@+id/label_change_1h"
+                app:layout_constraintEnd_toEndOf="@+id/currency_price_gbp"
+                app:layout_constraintStart_toEndOf="@+id/label_change_1h"
+                app:layout_constraintTop_toTopOf="@+id/label_change_1h"
+                app:layout_constraintVertical_bias="0.5"
+                tools:text="-12.43%" />
 
 
-                <TextView
-                    android:id="@+id/label_change_7d"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="28dp"
-                    android:text="@string/change_7d"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/currency_change_24h" />
+            <TextView
+                android:id="@+id/label_change_24h"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="@string/change_24h"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/currency_change_1h" />
 
-                <TextView
-                    android:id="@+id/currency_change_7d"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    app:percentVal="@{currency.percentChange7d}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                    app:layout_constraintBottom_toBottomOf="@+id/label_change_7d"
-                    app:layout_constraintEnd_toEndOf="@+id/currency_change_24h"
-                    app:layout_constraintStart_toEndOf="@+id/label_change_7d"
-                    app:layout_constraintTop_toTopOf="@+id/label_change_7d"
-                    app:layout_constraintVertical_bias="0.5"
-                    tools:text="-42.86%" />
+            <TextView
+                android:id="@+id/currency_change_24h"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                app:percentVal="@{currency.percentChange24h}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toBottomOf="@+id/label_change_24h"
+                app:layout_constraintEnd_toEndOf="@+id/currency_change_1h"
+                app:layout_constraintStart_toEndOf="@+id/label_change_24h"
+                app:layout_constraintTop_toTopOf="@+id/label_change_24h"
+                app:layout_constraintVertical_bias="0.5"
+                tools:text="-5.58%" />
 
-            </android.support.constraint.ConstraintLayout>
 
-        </ScrollView>
+            <TextView
+                android:id="@+id/label_change_7d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="@string/change_7d"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/currency_change_24h" />
 
-    </FrameLayout>
+            <TextView
+                android:id="@+id/currency_change_7d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                app:percentVal="@{currency.percentChange7d}"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toBottomOf="@+id/label_change_7d"
+                app:layout_constraintEnd_toEndOf="@+id/currency_change_24h"
+                app:layout_constraintStart_toEndOf="@+id/label_change_7d"
+                app:layout_constraintTop_toTopOf="@+id/label_change_7d"
+                app:layout_constraintVertical_bias="0.5"
+                tools:text="-42.86%" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
 </layout>

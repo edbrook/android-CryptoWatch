@@ -34,7 +34,6 @@ class CurrencyDetailFragment: Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mBinding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_currency_detail, container, false)
-        mBinding?.isLoading = true
         return mBinding?.root
     }
 
@@ -51,7 +50,6 @@ class CurrencyDetailFragment: Fragment() {
     private fun subscribeUi() {
         mViewModel?.getCurrency()?.observe(this, Observer {
             mBinding?.currency = it
-            mBinding?.isLoading = false
         })
     }
 }

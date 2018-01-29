@@ -28,6 +28,10 @@
         <activity android:name=".ui.detail.CurrencyDetailActivity"
             android:label="@string/currency_detail"
             android:parentActivityName=".ui.list.CurrencyListActivity"/>
+        <activity
+            android:name=".ui.detail.CurrencyDetailPagerActivity"
+            android:label="@string/currency_detail"
+            android:parentActivityName=".ui.list.CurrencyListActivity"/>
     </application>
 
 </manifest>
