@@ -66,22 +66,20 @@ class CurrencyListViewModel: ViewModel() {
     fun updateCurrencies() {
         mUpdating.value = true
         val call = mApi.getConvertedCurrencies(TARGET_CURRENCY)
-        call.enqueue(CurrencyListCallback())
-    }
+        call.enqueue(object: Callback<List<Currency>> {
+            override fun onFailure(call: Call<List<Currency>>?, t: Throwable?) {
+                mUpdating.value = false
+            }
 
-    private inner class CurrencyListCallback: Callback<List<Currency>> {
-        override fun onFailure(call: Call<List<Currency>>?, t: Throwable?) {
-            mUpdating.value = false
-        }
-
-        override fun onResponse(call: Call<List<Currency>>?, response: Response<List<Currency>>?) {
-            val dbTask = DbInsertTask(mDb)
-            dbTask.setCallback(object: DbInsertTask.Companion.DbInsertTaskComplete {
-                override fun onDbInsertTaskComplete() {
-                    mUpdating.value = false
-                }
-            })
-            dbTask.execute(response?.body())
-        }
+            override fun onResponse(call: Call<List<Currency>>?, response: Response<List<Currency>>?) {
+                val dbTask = DbInsertTask(mDb)
+                dbTask.setCallback(object : DbInsertTask.Companion.DbInsertTaskComplete {
+                    override fun onDbInsertTaskComplete() {
+                        mUpdating.value = false
+                    }
+                })
+                dbTask.execute(response?.body())
+            }
+        })
     }
 }
