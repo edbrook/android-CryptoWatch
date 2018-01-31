@@ -1,10 +1,12 @@
 package uk.co.dekoorb.android.cryptowatch.ui.list
 
+import android.content.Context
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.squareup.picasso.Picasso
 import uk.co.dekoorb.android.cryptowatch.R
 import uk.co.dekoorb.android.cryptowatch.databinding.CurrencyListItemBinding
 import uk.co.dekoorb.android.cryptowatch.db.entity.Currency
@@ -14,10 +16,12 @@ import java.util.*
 /**
  * Created by edbrook on 22/01/2018.
  */
-class CurrencyListAdapter(listener: ItemClickListener):
+class CurrencyListAdapter(context: Context, listener: ItemClickListener):
         RecyclerView.Adapter<CurrencyListAdapter.CurrencyViewHolder>() {
 
+    var mContext: Context = context
     private var mCurrencyList: List<Currency>? = null
+    private var mCurrencyIconMap: HashMap<String, String>? = null
     private val mItemClickListener: ItemClickListener = listener
 
     init {
@@ -51,7 +55,11 @@ class CurrencyListAdapter(listener: ItemClickListener):
         notifyDataSetChanged()
     }
 
-    class CurrencyViewHolder(itemBinding: CurrencyListItemBinding, listener: ItemClickListener):
+    fun setCurrencyIconMap(map: HashMap<String, String>) {
+        mCurrencyIconMap = map
+    }
+
+    inner class CurrencyViewHolder(itemBinding: CurrencyListItemBinding, listener: ItemClickListener):
             RecyclerView.ViewHolder(itemBinding.root),
             View.OnClickListener,
             View.OnLongClickListener {
@@ -61,6 +69,10 @@ class CurrencyListAdapter(listener: ItemClickListener):
 
         fun setCurrency(currency: Currency) {
             mBinding.currency = currency
+            val iconUrl = mCurrencyIconMap?.get(currency.symbol)
+            if (iconUrl != null) {
+                Picasso.with(mContext).load(iconUrl).into(mBinding.imCurrencyLogo)
+            }
         }
 
         override fun onClick(p0: View?) {

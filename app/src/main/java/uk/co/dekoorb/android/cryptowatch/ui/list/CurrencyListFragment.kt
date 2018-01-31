@@ -49,7 +49,7 @@ class CurrencyListFragment:
     override fun onCreateView(inflater: LayoutInflater?,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        mAdapter = CurrencyListAdapter(this)
+        mAdapter = CurrencyListAdapter(context,this)
         mBinding = DataBindingUtil.inflate(inflater,
                 R.layout.fragment_currency_list, container, false)
         mBinding?.isLoading = true
@@ -66,6 +66,7 @@ class CurrencyListFragment:
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mViewModel = ViewModelProviders.of(activity).get(CurrencyListViewModel::class.java)
+        mAdapter?.setCurrencyIconMap(mViewModel!!.getCurrencyImageMap())
         subscribeUi()
     }
 

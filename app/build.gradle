@@ -52,11 +52,14 @@ dependencies {
     testImplementation "android.arch.core:core-testing:1.1.0"
     testImplementation "android.arch.persistence.room:testing:1.0.0"
 
-    // Kotlin room / databinding
+    // Kotlin - room / data binding
     kapt 'android.arch.persistence.room:compiler:1.0.0'
     kapt 'com.android.databinding:compiler:3.0.1'
 
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }

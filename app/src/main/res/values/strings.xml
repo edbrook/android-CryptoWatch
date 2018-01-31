@@ -10,4 +10,5 @@
     <string name="search_title">Search</string>
     <string name="search_hint">currency name</string>
     <string name="menu_refresh">Refresh</string>
+    <string name="currency_logo">currency logo</string>
 </resources>

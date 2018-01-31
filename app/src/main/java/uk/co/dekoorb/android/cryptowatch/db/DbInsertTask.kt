@@ -17,15 +17,15 @@ class DbInsertTask(private val mDb: CurrencyDatabase):
 
     private var mListener: DbInsertTaskComplete? = null
 
-    fun setCallback(listner: DbInsertTaskComplete) {
-        mListener = listner
+    fun setCallback(listener: DbInsertTaskComplete) {
+        mListener = listener
     }
 
     override fun doInBackground(vararg currencies: List<Currency>?) {
         if (currencies.isNotEmpty()) {
-            val theList = currencies[0]
-            if (theList != null) {
-                mDb.currencyDao().addCurrencies(theList)
+            val currency = currencies[0]
+            if (currency != null) {
+                mDb.currencyDao().addCurrencies(currency)
             }
         }
     }

@@ -18,40 +18,51 @@
 
         <LinearLayout
             android:id="@+id/currency_item"
-            android:padding="8dp"
+            android:padding="16dp"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/currency_rank"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:intval="@{currency.rank}"
-                tools:text="1" />
+                tools:text="100" />
+
+            <ImageView
+                android:id="@+id/im_currency_logo"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/currency_logo"
+                android:scaleType="fitCenter"
+                android:visibility="visible" />
 
             <TextView
                 android:id="@+id/currency_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="4"
                 android:gravity="start"
                 android:text="@{currency.name}"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-                tools:text="Bitcoin" />
+                tools:text="Experience Points" />
 
             <TextView
                 android:id="@+id/currency_price_gbp"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:gravity="end"
+                android:gravity="end|center_vertical"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 app:currencyVal="@{currency.priceGbp}"
-                tools:text="£8500.34" />
+                tools:text="£88500.34" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 </layout>
