@@ -25,9 +25,6 @@
             <meta-data android:name="android.app.searchable"
                 android:resource="@xml/currency_search" />
         </activity>
-        <activity android:name=".ui.detail.CurrencyDetailActivity"
-            android:label="@string/currency_detail"
-            android:parentActivityName=".ui.list.CurrencyListActivity"/>
         <activity
             android:name=".ui.detail.CurrencyDetailPagerActivity"
             android:label="@string/currency_detail"
