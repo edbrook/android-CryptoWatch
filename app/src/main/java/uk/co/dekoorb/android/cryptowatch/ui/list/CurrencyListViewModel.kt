@@ -14,7 +14,6 @@ import uk.co.dekoorb.android.cryptowatch.db.DbInsertTask
 import uk.co.dekoorb.android.cryptowatch.db.entity.Currency
 import uk.co.dekoorb.android.cryptowatch.net.CoinMarketCapService
 import uk.co.dekoorb.android.cryptowatch.net.CoinMarketCapServiceBuilder
-import uk.co.dekoorb.android.cryptowatch.utils.CurrencyAppUtils
 
 /**
  * Created by edbrook on 22/01/2018.
@@ -33,12 +32,12 @@ class CurrencyListViewModel(app: Application): AndroidViewModel(app) {
     private val mCurrencyResult: LiveData<List<Currency>> = Transformations
             .switchMap(mNameFilter, { name -> loadCurrencyData("$name%") })
 
-    private val mImageUrls: HashMap<String,String>
+//    private val mImageUrls: HashMap<String,String>
 
     init {
         mNameFilter.value = ""
-        mImageUrls = CurrencyAppUtils.loadIconUrlsFromFile(app, "icons.json")
-        println("DEBUG-" + mImageUrls)
+//        mImageUrls = CurrencyAppUtils.loadIconUrlsFromFile(app, "icons.json")
+//        println("DEBUG-" + mImageUrls)
     }
 
     private fun loadCurrencyData(name: String): LiveData<List<Currency>> {
@@ -57,9 +56,9 @@ class CurrencyListViewModel(app: Application): AndroidViewModel(app) {
         return mCurrencyResult
     }
 
-    fun getCurrencyImageMap(): HashMap<String, String> {
-        return mImageUrls
-    }
+//    fun getCurrencyImageMap(): HashMap<String, String> {
+//        return mImageUrls
+//    }
 
     fun getFilter(): String? {
         return mNameFilter.value

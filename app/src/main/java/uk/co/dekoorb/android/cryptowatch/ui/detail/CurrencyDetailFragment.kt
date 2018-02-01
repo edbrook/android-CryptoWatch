@@ -8,15 +8,17 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.squareup.picasso.Picasso
 import uk.co.dekoorb.android.cryptowatch.R
 import uk.co.dekoorb.android.cryptowatch.databinding.FragmentCurrencyDetailBinding
+import uk.co.dekoorb.android.cryptowatch.utils.CurrencyAppUtils
 
 /**
  * Created by edbrook on 23/01/2018.
  */
 class CurrencyDetailFragment: Fragment() {
     companion object {
-        const val TAG = "CurrencyDetailFragment"
+//        const val TAG = "CurrencyDetailFragment"
         const val KEY_CURRENCY_ID = "key::currency_id"
 
         fun newInstance(currencyId: String): CurrencyDetailFragment {
@@ -50,6 +52,12 @@ class CurrencyDetailFragment: Fragment() {
     private fun subscribeUi() {
         mViewModel?.getCurrency()?.observe(this, Observer {
             mBinding?.currency = it
+            val id = it?.id
+            if (id != null) {
+                Picasso.with(context)
+                        .load(CurrencyAppUtils.getIconUrlForId(id))
+                        .into(mBinding!!.imCurrencyLogo)
+            }
         })
     }
 }

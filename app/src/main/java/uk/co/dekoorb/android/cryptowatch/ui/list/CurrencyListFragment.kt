@@ -66,7 +66,7 @@ class CurrencyListFragment:
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         mViewModel = ViewModelProviders.of(activity).get(CurrencyListViewModel::class.java)
-        mAdapter?.setCurrencyIconMap(mViewModel!!.getCurrencyImageMap())
+//        mAdapter?.setCurrencyIconMap(mViewModel!!.getCurrencyImageMap())
         subscribeUi()
     }
 
