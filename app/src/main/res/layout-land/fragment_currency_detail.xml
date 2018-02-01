@@ -11,65 +11,70 @@
             type="uk.co.dekoorb.android.cryptowatch.db.entity.Currency" />
     </data>
 
-    <ScrollView
+    <LinearLayout
+        android:baselineAligned="false"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
             android:padding="16dp">
 
             <TextView
                 android:id="@+id/currency_name"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginTop="8dp"
                 android:text="@{currency.name}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-                app:layout_constraintEnd_toStartOf="@+id/tableLayout"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="Bitcoin" />
+                tools:text="Experience Points" />
 
             <TextView
                 android:id="@+id/currency_symbol"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@{currency.symbol}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                app:layout_constraintBottom_toBottomOf="@+id/im_currency_logo"
-                app:layout_constraintStart_toEndOf="@+id/im_currency_logo"
-                app:layout_constraintTop_toTopOf="@+id/im_currency_logo"
-                tools:text="BTC" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/im_currency_logo"
+                tools:text="MINOTA" />
 
             <ImageView
                 android:id="@+id/im_currency_logo"
                 android:layout_width="128dp"
                 android:layout_height="128dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:contentDescription="@string/currency_logo"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/currency_name"
                 app:srcCompat="@mipmap/ic_launcher_round" />
+        </android.support.constraint.ConstraintLayout>
+
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
             <TableLayout
                 android:id="@+id/tableLayout"
-                android:layout_width="321dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:layout_marginTop="8dp"
-                android:elevation="10dp"
-                android:stretchColumns="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:stretchColumns="1">
 
                 <TableRow>
-
                     <TextView
                         android:id="@+id/label_price_gbp"
                         android:layout_width="wrap_content"
@@ -90,7 +95,6 @@
                 </TableRow>
 
                 <TableRow>
-
                     <TextView
                         android:id="@+id/label_change_1h"
                         android:layout_width="wrap_content"
@@ -111,7 +115,6 @@
                 </TableRow>
 
                 <TableRow>
-
                     <TextView
                         android:id="@+id/label_change_24h"
                         android:layout_width="wrap_content"
@@ -132,7 +135,6 @@
                 </TableRow>
 
                 <TableRow>
-
                     <TextView
                         android:id="@+id/label_change_7d"
                         android:layout_width="wrap_content"
@@ -152,7 +154,6 @@
                         tools:text="-42.86%" />
                 </TableRow>
             </TableLayout>
-        </android.support.constraint.ConstraintLayout>
-
-    </ScrollView>
+        </ScrollView>
+    </LinearLayout>
 </layout>
