@@ -32,12 +32,8 @@ class CurrencyListViewModel(app: Application): AndroidViewModel(app) {
     private val mCurrencyResult: LiveData<List<Currency>> = Transformations
             .switchMap(mNameFilter, { name -> loadCurrencyData("$name%") })
 
-//    private val mImageUrls: HashMap<String,String>
-
     init {
         mNameFilter.value = ""
-//        mImageUrls = CurrencyAppUtils.loadIconUrlsFromFile(app, "icons.json")
-//        println("DEBUG-" + mImageUrls)
     }
 
     private fun loadCurrencyData(name: String): LiveData<List<Currency>> {
@@ -55,10 +51,6 @@ class CurrencyListViewModel(app: Application): AndroidViewModel(app) {
         }
         return mCurrencyResult
     }
-
-//    fun getCurrencyImageMap(): HashMap<String, String> {
-//        return mImageUrls
-//    }
 
     fun getFilter(): String? {
         return mNameFilter.value

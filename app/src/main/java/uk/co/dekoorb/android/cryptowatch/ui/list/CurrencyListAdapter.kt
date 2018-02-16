@@ -22,7 +22,6 @@ class CurrencyListAdapter(context: Context, listener: ItemClickListener):
 
     var mContext: Context = context
     private var mCurrencyList: List<Currency>? = null
-//    private var mCurrencyIconMap: HashMap<String, String>? = null
     private val mItemClickListener: ItemClickListener = listener
 
     init {
@@ -56,10 +55,6 @@ class CurrencyListAdapter(context: Context, listener: ItemClickListener):
         notifyDataSetChanged()
     }
 
-//    fun setCurrencyIconMap(map: HashMap<String, String>) {
-//        mCurrencyIconMap = map
-//    }
-
     inner class CurrencyViewHolder(itemBinding: CurrencyListItemBinding, listener: ItemClickListener):
             RecyclerView.ViewHolder(itemBinding.root),
             View.OnClickListener,
@@ -73,10 +68,6 @@ class CurrencyListAdapter(context: Context, listener: ItemClickListener):
             Picasso.with(mContext)
                     .load(CurrencyAppUtils.getIconUrlForId(currency.id))
                     .into(mBinding.imCurrencyLogo)
-//            val iconUrl = mCurrencyIconMap?.get(currency.symbol)
-//            if (iconUrl != null) {
-//                Picasso.with(mContext).load(iconUrl).into(mBinding.imCurrencyLogo)
-//            }
         }
 
         override fun onClick(p0: View?) {
